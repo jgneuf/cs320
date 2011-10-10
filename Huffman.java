@@ -22,6 +22,16 @@ public class Huffman {
 		text  = s;
 		heap  = new PriorityQueue<CharFrequency>(ALPH, new CharFrequencyComparator());
 	}
+	
+	/** Allow everything to be reclaimbed by the garbage collector. */
+	public void clean () {
+		freq  = null;
+		text  = null;
+		codes = null;
+		for (CharFrequency cf : heap)
+			cf = null;
+		heap = null;
+	}
 
 	/** Return a bit-sequence for the string given to Huffman. */
 	public String encode () {
